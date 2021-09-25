@@ -9,7 +9,7 @@ public class Solution24 {
 
     //Create new instance of Solution24 "reader"
 
-    public String takeInput(String position) {
+    private String takeInput(String position) {
         //Prompt the user to input the "first" or "second" string using a Scanner input variable.
         //Convert the string to lowercase.
         //Return the string.
