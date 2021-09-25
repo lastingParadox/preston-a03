@@ -1,38 +1,50 @@
 /*
  *  UCF COP3330 Fall 2021 Assignment 3 Solutions
- *  Copyright 2021 first_name last_name
+ *  Copyright 2021 Zander Preston
  */
+
 package baseline;
+
+import java.util.Scanner;
 
 public class Solution25 {
 
-    //Create an instance of a Scanner named "input".
-    //Create an instance of Solution25 named "reader".
+    static final Scanner input = new Scanner(System.in);
+    static final Solution25 reader = new Solution25();
 
     private String takePassword() {
-        //Prompts the user for their password.
-        //Returns their password as a string.
-        return "null";
+        //Prompts the user to enter a password and returns it as a string.
+        System.out.print("Please enter your password: ");
+        return input.nextLine();
     }
 
     public static void main(String[] args) {
-        //Create an instance of Password named "validator".
+        //Prompts the user to input a password and outputs the strength of the password.
+            //Password strength is based on the password strength criteria in class Password.
 
-        //Create a String "password".
-        //Set password equal to reader.takePassword()
-        //While the user does not enter a password:
-            //Output "No password entered!"
-            //Set password equal to reader.takePassword()
+        Password validator = new Password();
 
-        //Integer numIndicator is equal to validator.passwordValidator(password)
+        //String validation, in the case someone wants to not input something.
+        String password = reader.takePassword();
+        while (password.equals("")) {
+            System.out.println("No password entered!");
+            password = reader.takePassword();
+        }
 
-        //String stringIndicator is equal to switch (numIndicator)
-            //Case 0: "password of unknown strength"
-            //Case 1: "very weak password"
-            //Case 2: "weak password"
-            //Case 3: "strong password"
-            //Case 4: "very strong password"
+        int numIndicator = validator.passwordValidator(password);
 
-        //Output "The password \'password\' is a stringIndicator."
+        //Reads the strength passed by passwordValidator and converts it to something readable.
+        String stringIndicator = switch (numIndicator) {
+            case 0: yield "password of unknown strength";
+            case 1: yield "very weak password";
+            case 2: yield "weak password";
+            case 3: yield "strong password";
+            case 4: yield "very strong password";
+            default:
+                throw new IllegalArgumentException("Unexpected value: " + numIndicator);
+        };
+
+        System.out.printf("The password '%s' is a %s.%n", password, stringIndicator);
+
     }
 }
