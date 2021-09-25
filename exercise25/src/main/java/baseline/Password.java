@@ -42,7 +42,7 @@ public class Password {
     }
 
     private int lesserPasswordAssigner(boolean number, boolean letter, boolean special) {
-        //Returns a number based on various circumstances of a password greater than eight characters.
+        //Returns a number based on various circumstances of a password lesser than eight characters.
         //Used only in passwordValidator(password) and for organization.
 
         //Whereas 0 = "unknown", 1 = "very weak", 2 = "weak", 3 = "strong", 4 = "very strong":
