@@ -10,25 +10,28 @@ import java.util.Scanner;
 public class Solution24 {
 
     static final Scanner input = new Scanner(System.in);
-    Solution24 reader = new Solution24();
+    static Solution24 reader = new Solution24();
 
     private String takeInput(String position) {
+        //Prompts for the user's first or second input (based on the parameter) and returns the input in lowercase.
         System.out.printf("Enter the %s string: ", position);
         return input.nextLine().toLowerCase();
     }
 
     public static void main(String[] args) {
+        //Prompts the user for two strings and outputs whether the strings are anagrams.
+        Anagram sorter = new Anagram();
 
-        //Create new instance of Anagram "sorter".
-        //Create string variables "firstString" and "secondString".
+        //Actual prompt for the strings.
+        System.out.println("Enter two strings and I'll tell you if they are anagrams:");
 
-        //Set "firstString" equal to takeInput("first").
-        //Set "secondString equal to takeInput("second).
+        String firstString = reader.takeInput("first");
+        String secondString = reader.takeInput("second");
 
-        //If sorter's isAnagram(firstString, secondString) is true:
-            //Output "\"firstString\" and "\secondString\" are anagrams."
-        //Else:
-            //Output "\"firstString\" and "\secondString\" are not anagrams."
+        if(sorter.isAnagram(firstString, secondString))
+                System.out.printf("\"%s\" and \"%s\" are anagrams.", firstString, secondString);
+        else
+            System.out.printf("\"%s\" and \"%s\" are not anagrams.", firstString, secondString);
     }
 
 }
