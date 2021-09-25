@@ -1,6 +1,8 @@
 package baseline;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,30 +40,10 @@ class PasswordTest {
         assertTrue(actual);
     }
 
-    @Test
-    void passwordValidatorTest() {
+    @ParameterizedTest
+    @CsvSource({"batbatman24!,4", "batbatman24,3", "batman,2", "1337,1", "j0k3r,0"})
+    void passwordValidatorTest(String password, int expected) {
         Password validator = new Password();
-
-        String password = "batbatman24!";
-
-        int expected = 4;
         int actual = validator.passwordValidator(password);
         assertEquals(expected, actual);
-
-        password = ("batbatman24");
-        expected = 3;
-        assertEquals(expected, actual);
-
-        password = ("batman");
-        expected = 2;
-        assertEquals(expected, actual);
-
-        password = ("1337");
-        expected = 1;
-        assertEquals(expected, actual);
-
-        password = ("j0k3r");
-        expected = 0;
-        assertEquals(expected, actual);
-    }
-}
+    }}
