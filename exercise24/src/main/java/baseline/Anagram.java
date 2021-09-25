@@ -1,20 +1,24 @@
 package baseline;
 
+import java.util.Arrays;
+
 public class Anagram {
 
     public String sortString(String inputString) {
-        //Create a temporary array
-        //Set the array equal to the inputString using .toCharArray()
-        //Using the Arrays package, use the .sort() function on the array.
-        //Return the array as a new String.
-        return "null";
+        //Creates a temporary array and sorts it, returning the array as a string.
+        char[] tempArray = inputString.toCharArray();
+
+        Arrays.sort(tempArray);
+
+        return new String(tempArray);
     }
 
-    public boolean isAnagram(String firstSorted, String secondSorted) {
-        //If the firstSorted string is equal to the secondSorted string:
-        //Return true.
-        //Otherwise, return false.
-        return false;
+    public boolean isAnagram(String firstString, String secondString) {
+        //Sorts the strings and returns true or false based on whether the sorted strings are equal to one another.
+        String firstSorted = sortString(firstString);
+        String secondSorted = sortString(secondString);
+
+        return firstSorted.equals(secondSorted);
     }
 
 }

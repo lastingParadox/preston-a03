@@ -5,15 +5,16 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution24 {
 
-    //Create new instance of Solution24 "reader"
+    static final Scanner input = new Scanner(System.in);
+    Solution24 reader = new Solution24();
 
     private String takeInput(String position) {
-        //Prompt the user to input the "first" or "second" string using a Scanner input variable.
-        //Convert the string to lowercase.
-        //Return the string.
-        return "null";
+        System.out.printf("Enter the %s string: ", position);
+        return input.nextLine().toLowerCase();
     }
 
     public static void main(String[] args) {
@@ -24,10 +25,7 @@ public class Solution24 {
         //Set "firstString" equal to takeInput("first").
         //Set "secondString equal to takeInput("second).
 
-        //String "firstSorted" is equal to sorter's sortString(firstString).
-        //String "secondSorted" is equal to sorter's sortString(secondString).
-
-        //If sorter's isAnagram(firstSorted, secondSorted) is true:
+        //If sorter's isAnagram(firstString, secondString) is true:
             //Output "\"firstString\" and "\secondString\" are anagrams."
         //Else:
             //Output "\"firstString\" and "\secondString\" are not anagrams."

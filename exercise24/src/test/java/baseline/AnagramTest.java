@@ -21,8 +21,8 @@ class AnagramTest {
     void isAnagramTest() {
         Anagram sorter = new Anagram();
 
-        String firstString = "ehllo";
-        String secondString = "ehllo";
+        String firstString = "note";
+        String secondString = "tone";
 
         boolean actual = sorter.isAnagram(firstString, secondString);
 
