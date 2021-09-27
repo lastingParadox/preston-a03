@@ -13,6 +13,7 @@ public class EmployeeValidator {
     private final String id;
 
     EmployeeValidator(String firstName, String lastName, String zipcode, String id) {
+        //Constructor to take in the first name, last name, zipcode, and id
         this.firstName = firstName;
         this.lastName = lastName;
         this.zipcode = zipcode;
@@ -20,6 +21,7 @@ public class EmployeeValidator {
     }
 
     public String validateFirst() {
+        //Validates the first name, making sure it is at least 2 characters long and is filled in.
         StringBuilder temp = new StringBuilder();
 
         if (firstName.length() < 2)
@@ -31,6 +33,7 @@ public class EmployeeValidator {
     }
 
     public String validateLast() {
+        //Validates the last name, making sure it is at least 2 characters long and is filled in.
         StringBuilder temp = new StringBuilder();
 
         if (lastName.length() < 2)
@@ -42,6 +45,7 @@ public class EmployeeValidator {
     }
 
     public String validateZip() {
+        //Validates the zipcode, making sure it is at least 5 characters long and is numerical.
         StringBuilder temp = new StringBuilder();
 
         if (!zipcode.matches("\\d{5}"))
@@ -53,6 +57,7 @@ public class EmployeeValidator {
     }
 
     public String validateID() {
+        //Validates the employee id, making sure it is in the format AA-1234
         StringBuilder temp = new StringBuilder();
 
         if (!id.matches("[a-zA-Z]{2}-[0-9]{4}"))
@@ -64,6 +69,10 @@ public class EmployeeValidator {
     }
 
     public String validateInput() {
-        return validateFirst() + validateLast() + validateZip() + validateID();
+        //Appends all the errors to a string. If there are no errors, appends a "no error" message.
+        String temp = validateFirst() + validateLast() + validateZip() + validateID();
+        if (temp.equals(""))
+            temp = "There were no errors found.";
+        return temp;
     }
 }

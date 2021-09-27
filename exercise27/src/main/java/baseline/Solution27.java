@@ -12,20 +12,30 @@ public class Solution27 {
     private static final Scanner input = new Scanner(System.in);
 
     private String takeInput(String prompt) {
+        //Prints the prompt and takes in the user's input, returning it.
         System.out.print(prompt);
         return input.nextLine();
     }
 
     public static void main(String[] arg) {
-        //Create an instance of Solution27 named "reader"
+        Solution27 reader = new Solution27();
 
-        //String firstName is equal to takeInput("Enter the first name: ")
-        //String lastName is equal to takeInput("Enter the last name: ")
-        //String zipcode is equal to takeInput("Enter the ZIP code: ")
-        //String id is equal to takeInput("Enter the employee ID: ")
+        //Prompts the user for the first name, last name, ZIP code, and ID.
+        String firstName = reader.takeInput("Enter the first name: ");
+        String lastName = reader.takeInput("Enter the last name: ");
+        String zipcode = reader.takeInput("Enter the ZIP code: ");
+        String id = reader.takeInput("Enter the employee ID: ");
 
-        //Create an instance of EmployeeField named "validator" with constructor parameters firstName, lastName, zipcode, id
+        EmployeeValidator validator = new EmployeeValidator(firstName, lastName, zipcode, id);
 
-        //Print validator.validateInput();
+        //Validates the responses and prints whether they fit the criteria below:
+            //The first name must be filled in.
+            //The last name must be filled in.
+            //The first and last names must be at least two characters long.
+            //An employee ID is in the format AA-1234. So, two letters, a hyphen, and four numbers.
+            //The ZIP code must be a number.
+
+                System.out.println(validator.validateInput());
+
     }
 }

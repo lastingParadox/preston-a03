@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Zander Preston
+ */
+
 package baseline;
 
 import org.junit.jupiter.api.Test;
@@ -42,7 +47,7 @@ class EmployeeValidatorTest {
 
     @Test
     void validateInputTest() {
-        String expected = "";
+        String expected = "There were no errors found.";
         String actual = employee.validateInput();
 
         assertEquals(expected, actual);
