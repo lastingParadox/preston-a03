@@ -5,34 +5,47 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution28 {
 
-    //Create final int loopNum = 5;
+    private static final int LOOPNUM = 5;
+    private static final Scanner input = new Scanner(System.in);
 
     private int takeIntInput() {
-        //Prompt the user to enter a number.
-            //Store user's response and convert to an int.
-        //If the user does not enter a number:
-            //Prompt the user to enter a number.
-            //Store user's response.
-        return 0;
+        String response;
+        int intResponse;
+
+        System.out.print("Enter a number: ");
+        response = input.nextLine();
+
+        while(true) {
+            try {
+                intResponse = Integer.parseInt(response);
+                return intResponse;
+            }
+            catch (NumberFormatException e) {
+                System.out.printf("%s is not a number.%nEnter a number: ", response);
+                response = input.nextLine();
+            }
+
+        }
     }
 
+    //Prompts the user to enter a number LOOPNUM times and gets the total of the user's inputs.
     public int addTotal() {
-        //Create int total = 0
-        //Loop for loopNum times:
-            //total += takeIntInput()
-        //Return total
-        return 0;
+        int total = 0;
+        for (int i = 0; i<LOOPNUM; i++)
+            total += takeIntInput();
+        return total;
     }
 
+    //Overloaded addTotal method that takes in an array of integers instead of user input.
     public int addTotal(int[] array) {
-        //Overloading method for unit testing:
-            //Create int total = 0
-            //Loop for loopNum times:
-                //total += array[i]
-            //Return total
-        return 0;
+        int total = 0;
+        for (int i = 0; i<LOOPNUM; i++)
+            total += array[i];
+        return total;
     }
 
     public static void main(String[] arg) {
