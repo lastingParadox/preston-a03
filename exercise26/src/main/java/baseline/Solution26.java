@@ -5,21 +5,31 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution26 {
 
-    //Create new instance of Solution26 called "reader".
+    Solution26 reader = new Solution26();
+    Scanner input = new Scanner(System.in);
 
+    //Prompts the user for an input and returns it.
     private String storeInput(String prompt) {
-        //Print out the prompt.
-        //Return the user's input.
+        System.out.print(prompt);
+        return input.nextLine();
     }
 
-    private double validateResponse(String prompt) {
-        //While the response cannot convert to a double (via parseDouble):
-            //Prompt the user to input a number.
-            //Store the user's input in "response".
-        //Return the response.
-        return 0;
+    //Validates if the user's response is a number. If not, prompts the user to enter a number.
+    private double validateResponse(String response) {
+        while(true) {
+            try {
+                return Double.parseDouble(response);
+            }
+            //If the user's response is not a number, skips the error and prompts the user to enter a number.
+            catch (NumberFormatException e) {
+                System.out.printf("%s is not a number. Please enter a value: ", response);
+                response = input.nextLine();
+            }
+        }
     }
 
     public static void main(String[] arg) {

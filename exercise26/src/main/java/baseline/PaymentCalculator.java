@@ -5,24 +5,36 @@
 
 package baseline;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class PaymentCalculator {
 
-    //Create final bigDecimal variables balance, dailyRate, monthPayment
+    private final double balance;
+    private final double dailyRate;
+    private final double monthPayment;
 
-    PaymentCalculator(double balance, double apr, double monthPayment) {
-        //Set balance equal to this balance, rounded up to next cent
-        //Set dailyRate equal to apr / 365
-        //Set monthPayment equal to this month payment, rounded up to next cent
+    //Creates a temporary BigDecimal equal to value and rounds it up to the nearest decimalPlace.
+    public double round(double value, int decimalPlaces) {
+        BigDecimal temp = BigDecimal.valueOf(value);
+        temp = temp.setScale(decimalPlaces, RoundingMode.UP);
+        return temp.doubleValue();
     }
 
+    //PaymentCalculator constructor that rounds up balance and monthPayment to the nearest cent and gets the daily rate from the APR percentage.
+    PaymentCalculator(double balance, double apr, double monthPayment) {
+        this.balance = round(balance, 2);
+        dailyRate = (apr/100)/365;
+        this.monthPayment = round(monthPayment, 2);
+    }
+
+    //Calculates the number of months till the user pays off their debt.
     public int calculateMonthsUntilPaidOff() {
         //monthstoPay is set equal to the formula for calculating months until the card is paid off.
-            //i.e., n = -(1/30) * log(1 + b/p * (1 - (1 + i)^30)) / log(1 + i)
-                //n = monthstoPay
-                //i = dailyRate
-                //b = balance
-                //p = monthPayment
-        //monthstoPay is rounded to the nearest integer and is returned.
-        return 0;
+        double monthstoPay = ((double)-1/30) * Math.log10(1 + (balance/monthPayment) * (1 - Math.pow((1 + dailyRate),30))) / Math.log10(1+dailyRate);
+
+        //monthstoPay is rounded to the next month.
+        monthstoPay = round(monthstoPay, 0);
+        return (int)monthstoPay;
     }
 }
