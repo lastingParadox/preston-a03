@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Solution24 {
 
     static final Scanner input = new Scanner(System.in);
-    static Solution24 reader = new Solution24();
 
     private String takeInput(String position) {
         //Prompts for the user's first or second input (based on the parameter) and returns the input in lowercase.
@@ -20,6 +19,9 @@ public class Solution24 {
 
     public static void main(String[] args) {
         //Prompts the user for two strings and outputs whether the strings are anagrams.
+
+        Solution24 reader = new Solution24();
+
         Anagram sorter = new Anagram();
 
         //Actual prompt for the strings.

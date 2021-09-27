@@ -9,17 +9,17 @@ import java.util.Scanner;
 
 public class Solution26 {
 
-    Solution26 reader = new Solution26();
-    Scanner input = new Scanner(System.in);
+    static final Scanner input = new Scanner(System.in);
 
-    //Prompts the user for an input and returns it.
     private String storeInput(String prompt) {
+        //Prompts the user for an input and returns it.
         System.out.print(prompt);
         return input.nextLine();
     }
 
-    //Validates if the user's response is a number. If not, prompts the user to enter a number.
-    private double validateResponse(String response) {
+    private double validateResponse(String prompt) {
+        //Takes in the user's response and validates if it is a number. If not, prompts the user to enter a number.
+        String response = storeInput(prompt);
         while(true) {
             try {
                 return Double.parseDouble(response);
@@ -33,14 +33,21 @@ public class Solution26 {
     }
 
     public static void main(String[] arg) {
-        //Prompt the user for their balance and verify it is a number. (double balance)
-        //Prompt the user for the APR on the card and verify it is a number. (double apr)
-        //Prompt the user for the monthly payment and verify it is a number. (double monthPayment)
+        //Prompts the user to enter information regarding their card debt and returns the number of months they need to pay it off.
 
-        //Create new instance of PaymentCalculator called "calculator" with constructors balance, apr, monthPayment.
-        //Integer variable months is set equal to calculator's calculateMonthsUntilPaidOff().
+        Solution26 reader = new Solution26();
 
-        //Output "It will take you 'months' months to pay off this card."
+        //Prompts for balance, apr, and monthly payments with validation to ensure numbers are input.
+        double balance = reader.validateResponse("What is your balance? ");
+        double apr = reader.validateResponse("What is the APR on the card (as a percent)? ");
+        double monthPayment = reader.validateResponse("What is the monthly payment you can make? ");
+
+        PaymentCalculator calculator = new PaymentCalculator(balance, apr, monthPayment);
+
+        //Calculates the number of months needed.
+        int months = calculator.calculateMonthsUntilPaidOff();
+
+        System.out.printf("It will take you %d months to pay off this card.", months);
 
     }
 

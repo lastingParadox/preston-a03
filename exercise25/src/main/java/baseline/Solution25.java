@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Solution25 {
 
     static final Scanner input = new Scanner(System.in);
-    static final Solution25 reader = new Solution25();
 
     private String takePassword() {
         //Prompts the user to enter a password and returns it as a string.
@@ -21,6 +20,8 @@ public class Solution25 {
     public static void main(String[] args) {
         //Prompts the user to input a password and outputs the strength of the password.
             //Password strength is based on the password strength criteria in class Password.
+
+        Solution25 reader = new Solution25();
 
         Password validator = new Password();
 
