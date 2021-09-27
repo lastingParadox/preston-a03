@@ -5,13 +5,15 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution27 {
 
-    //Create a final Scanner named "input"
+    private static final Scanner input = new Scanner(System.in);
 
     private String takeInput(String prompt) {
-        //Print the prompt
-        //Return the user's response
+        System.out.print(prompt);
+        return input.nextLine();
     }
 
     public static void main(String[] arg) {
