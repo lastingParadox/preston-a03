@@ -5,30 +5,40 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution29 {
 
+    private static final Scanner input = new Scanner(System.in);
+
     private String takeInput() {
-        //Print "What is the rate of return?"
-        //Return user's input.
-        return "";
+        System.out.print("What is the rate of return? ");
+        return input.nextLine();
     }
 
-    public double validateIntResponse() {
-        //Sets string response equal to takeInput()
-        //Try to cast the string to a double "doubleResponse"
-            //While the user did not enter a number:
-                //Prompt the user to enter a numerical value.
-                //response is set equal to takeInput()
-            //If doubleResponse is 0 or less:
-                //Prompt the user to enter a numerical value higher than zero.
-                //response is set equal to takeInput()
-        //Return doubleResponse.
-        return 0;
+    public double validateIntResponse(String response) {
+        double doubleResponse;
+        while (true) {
+            try {
+                doubleResponse = Double.parseDouble(response);
+
+                while (doubleResponse == 0) {
+                    System.out.println("Please enter a value greater than zero.");
+                    response = takeInput();
+                    doubleResponse = Double.parseDouble(response);
+                }
+
+                return doubleResponse;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Sorry, that's not a valid input.");
+                response = takeInput();
+            }
+        }
     }
 
     public double calcDoubleTime (double rate) {
-        //Return 72/rate.
-        return 0;
+        return 72/rate;
     }
 
     public static void main(String[] arg) {
