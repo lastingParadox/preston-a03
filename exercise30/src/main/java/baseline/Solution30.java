@@ -7,24 +7,28 @@ package baseline;
 
 public class Solution30 {
 
-    //Create final int tableSize = 12
+    private static final int TABLESIZE = 12;
 
     public int multiply(int num1, int num2) {
         //Simply multiplies two numbers and returns their product.
         //Used for easier comprehension in the multiplication table and unit testing.
-        return 0;
+        return num1 * num2;
     }
 
-    public String createMultiplicationTable () {
-        //Create int product
-        //Create Stringbuilder table
-        //Loop for values 1 to tableSize (i)
-            //Loop for values 1 to tableSize (j)
-                //Product is equal to multiply(i, j)
-                //Append formatted product with four spaces (%4d) to table
-            //Append the next line to table
-        //Return String.valueOf(table)
-        return "";
+    public String createMultiplicationTable (int tableSize) {
+        //Loops for each row and column of a multiplication table, getting the product for each cell.
+        //Appends each row and column to a string and returns it.
+        int product;
+        StringBuilder table = new StringBuilder();
+
+        for (int i = 1; i<=tableSize; i++) {
+            for (int j = 1; j<=tableSize; j++) {
+                product = multiply(i, j);
+                table.append(String.format("%5d", product));
+            }
+            table.append("\n");
+        }
+        return String.valueOf(table);
     }
 
     public static void main(String[] arg) {
