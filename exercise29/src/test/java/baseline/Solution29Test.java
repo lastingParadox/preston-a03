@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Solution29Test {
     @Test
-    void validateIntResponseTest() {
+    void validateDoubleResponseTest() {
         Solution29 tester = new Solution29();
 
         double expected = 14.00;
-        double actual = tester.validateIntResponse("14.00");
+        double actual = tester.validateDoubleResponse("14.00");
 
         assertEquals(expected, actual);
     }
