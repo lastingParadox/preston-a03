@@ -33,12 +33,16 @@ public class Solution31 {
     }
 
     public static void main(String[] arg) {
-        //Create new instance of Solution31 "prompter"
+        Solution31 prompter = new Solution31();
 
-        //int age = validateInput("What is your age? ", takeInput("What is your age? "))
-        //int restingHR = validateInput("What is your resting heart rate? ", takeInput("What is your resting heart rate? "))
+        int age = prompter.validateIntInput("What is your age? ",
+                prompter.takeInput("What is your age? "));
 
-        //Create new instance of HeartRate "calculator", using constructors age and restingHR
-        //Run calculator.createTargetTable
+        int restingHR = prompter.validateIntInput("What is your resting heart rate? ",
+                prompter.takeInput("What is your resting heart rate? "));
+
+        HeartRate calculator = new HeartRate(age, restingHR);
+
+        System.out.print(calculator.createTargetTable());
     }
 }
