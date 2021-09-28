@@ -32,8 +32,8 @@ public class Solution30 {
     }
 
     public static void main(String[] arg) {
-        //Create new instance Solution30 "printer"
+        Solution30 printer = new Solution30();
 
-        //Output printer.createMultiplicationTable()
+        System.out.printf("%s", printer.createMultiplicationTable(TABLESIZE));
     }
 }
