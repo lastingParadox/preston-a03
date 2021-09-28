@@ -5,49 +5,51 @@
 
 package baseline;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class HeartRate {
-    //Create static integers age and restingHR
+    private final int age;
+    private final int restingHR;
 
     HeartRate(int age, int restingHR) {
         //Constructor
-        //Set this.age equal to age
-        //Set this.restingHR equal to restingHR
+        this.age = age;
+        this.restingHR = restingHR;
     }
 
     public int round(double target) {
-        //Create temporary BigDecimal "temp"
-        //Round BigDecimal to the next integer.
-        //Return the integer value of temp.
-        return 0;
+        BigDecimal temp = BigDecimal.valueOf(target);
+        temp = temp.setScale(0, RoundingMode.HALF_UP);
+        return temp.intValue();
     }
 
     public double calcTargetHR(double intensity) {
-        //Return formula for target heart rate
-            //(((220 - age) - restingHR) * intensity) + restingHR
-        return 0;
+        return (((220 - age) - restingHR) * intensity) + restingHR;
     }
 
     private StringBuilder createTargetTableHeader() {
-        //Create new StringBuilder "temp"
-        //Append "Resting Pulse: 'restingHR'" to temp
-        //Append formatted "Age: 'age'\n" with eight spaces in front of it ("%12s: %d\n", "Age:", age) to temp
-        //Append formatted "Intensity    | Rate\n-------------|--------\n" ("Intensity%5s
-                                                                          //Rate\n-------------|--------\n", "|") to temp
-        //return temp
-        return new StringBuilder();
+        StringBuilder temp = new StringBuilder();
+
+        temp.append(String.format("Resting Pulse: %d", restingHR));
+        temp.append(String.format("%11s: %d%n%n", "Age", age));
+        temp.append(String.format("Intensity%5s Rate%n-------------|--------%n", "|"));
+
+        return temp;
     }
 
     public String createTargetTable() {
-        //Create double intensity
-        //Create int target
-        //StringBuilder temp is set equal to createTargetTableHeader()
+        double intensity;
+        int target;
 
-        //Loop from 55 to 95 in increments of 5 (i)
-            //Append formatted "i%          | " ("%d%% %10s ", i, "|") to temp
-            //intensity = i/100
-            //target = round(calcTargetHR(intensity))
-            //Append formatted "'target' bpm\n" ("%d bpm\n) to temp
-        //Return String value of temp
-        return "";
+        StringBuilder temp = createTargetTableHeader();
+
+        for(int i = 55; i<=95; i+=5) {
+            temp.append(String.format("%d%% %10s ", i, "|"));
+            intensity = ((double)i/100);
+            target = round(calcTargetHR(intensity));
+            temp.append(String.format("%d bpm%n", target));
+        }
+        return String.valueOf(temp);
     }
 }
