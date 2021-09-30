@@ -41,13 +41,13 @@ public class Solution33 {
 
     public static void main(String[] args) {
         //Creates a list of 8ball responses, asks the user to enter a question, and responds with a random answer.
-        //Create instance Solution33 "prompter"
+        Solution33 prompter = new Solution33();
 
-        //Create a new list answers and have it contain the 8ball responses.
+        List<String> answers = prompter.create8BallAnswers();
 
-        //Ask the user for their question and take it.
+        prompter.takeQuestion();
 
-        //Integer "index" is a random number between 0 and answers.size()-1
-        //Print out the response based on the answer list index of "index"
+        int index = prompter.getRandNumber(answers);
+        System.out.printf("%s", answers.get(index));
     }
 }
