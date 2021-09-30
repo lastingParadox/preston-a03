@@ -12,29 +12,31 @@ import java.util.Scanner;
 
 public class Solution33 {
 
-    //New Random instance "random"
-    //New Scanner instance "input"
+    Random random = new Random();
+    Scanner input = new Scanner(System.in);
 
     private void takeQuestion() {
-        //Prompts the user for their question
-        //Takes their input and does nothing with it.
+        //Prompts the user to enter a question and does nothing with their response.
+        System.out.printf("What's your question?%n> ");
+        input.nextLine();
+        System.out.printf("%n");
     }
 
     public List<String> create8BallAnswers() {
-        //Create list "ballAnswers"
+        //Creates a list containing the 8ball's answers.
+        List<String> ballAnswers = new ArrayList<>();
 
-        //Add "Yes." to ballAnswers
-        //Add "No." to ballAnswers
-        //Add "Ask again later." to ballAnswers
+        ballAnswers.add("Yes.");
+        ballAnswers.add("No.");
+        ballAnswers.add("Ask again later.");
 
-        //return ballAnswers
-        return null;
+        return ballAnswers;
     }
 
     public int getRandNumber(List<String> answers) {
-        //Integer "range" is set equal to the size of the list.
-        //A random number is generated between 0 and range-1.
-        return 0;
+        //Gets a random number from 0 to the size of the 8ball answer list - 1.
+        int range = answers.size();
+        return random.nextInt(range);
     }
 
     public static void main(String[] args) {
