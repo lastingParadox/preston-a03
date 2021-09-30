@@ -3,6 +3,8 @@
  *  Copyright 2021 Zander Preston
  */
 
+package baseline;
+
 import java.util.Random;
 
 public class NumberGame {
@@ -13,10 +15,12 @@ public class NumberGame {
     private final Random random = new Random();
 
     public void setDifficulty() {
+        //Sets the difficulty of the game, validating the response is numerical and between 1 and 3.
         System.out.print("Enter the difficulty level (1, 2, or 3): ");
         String response = inputter.takeInput();
         int chosenDifficulty = 0;
 
+        //While the difficulty is an incorrect value, prompts the user to input again.
         while (chosenDifficulty < 1 || chosenDifficulty > 3) {
             try {
                 chosenDifficulty = Integer.parseInt(response);
@@ -31,6 +35,8 @@ public class NumberGame {
     }
 
     public int validateInt(String response) {
+        //Validates the user's response is an integer.
+        //If not, adds to the guess counter and asks the user to guess again.
         int responseInt;
 
         while(true) {
@@ -53,14 +59,19 @@ public class NumberGame {
     }
 
     public void playGame() {
+        //After the difficulty is found, generates a random number based on the difficulty.
+        //Asks the user to guess the random number, and finishes whenever the user gets the number correct.
         int chosenNum = getRandomNumber(difficulty);
         int playerGuessNum;
         String response;
 
+        //Starts the game
         System.out.print("I have my number. What's your guess? ");
+        guessCount++;
         response = inputter.takeInput();
         playerGuessNum = validateInt(response);
 
+        //After the initial guess, continues this process until the user guesses correctly.
         while(playerGuessNum != chosenNum) {
             guessCount++;
             if (playerGuessNum < chosenNum) {
