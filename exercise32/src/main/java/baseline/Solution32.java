@@ -35,6 +35,7 @@ public class Solution32 {
             System.out.print("Do you wish to play again (Y/N)? ");
             playGame = prompter.takeInput().toLowerCase();
 
+            //Validates the user's response to playing again.
             while(!playGame.equals("n") && !playGame.equals("y")) {
                 System.out.println("Invalid Response");
                 System.out.print("Do you wish to play again (Y/N)? ");
