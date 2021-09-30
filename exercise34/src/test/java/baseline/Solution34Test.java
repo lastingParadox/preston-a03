@@ -31,7 +31,7 @@ class Solution34Test {
         List<String> expected = new ArrayList<>();
         Collections.addAll(expected, expectedArray);
 
-        List actual;
+        List<String> actual;
         actual = test.createList();
 
         assertEquals(expected, actual);
@@ -47,7 +47,7 @@ class Solution34Test {
         List<String> expected = new ArrayList<>();
         Collections.addAll(expected, expectedArray);
 
-        List actual;
+        List<String> actual;
         actual = test.createList();
 
         actual = test.deleteEmployee(response, actual);

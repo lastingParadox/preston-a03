@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Solution34 {
 
-    Scanner input = new Scanner(System.in);
+    private static final Scanner input = new Scanner(System.in);
 
     public String takeCapitalizedInput(String response) {
         //Takes the user's input and capitalizes it.
@@ -14,23 +14,20 @@ public class Solution34 {
         StringBuilder capitalized = new StringBuilder();
         capitalized.append(Character.toUpperCase(response.charAt(0)));
 
-        for(int i = 1; i < response.length();) {
+        for(int i = 1; i < response.length();i++) {
             char ch = response.charAt(i);
 
-            if(ch == ' ') {
-                capitalized.append(' ');
-                capitalized.append(Character.toUpperCase(response.charAt(i+1)));
-                i += 2;
+            if(response.charAt(i-1) == ' ') {
+                capitalized.append(Character.toUpperCase(response.charAt(i)));
             }
             else {
                 capitalized.append(ch);
-                i++;
             }
         }
         return String.valueOf(capitalized);
     }
 
-    public List createList() {
+    public List<String> createList() {
         //Creates the list of employees.
         List<String> employees = new ArrayList<>();
 
@@ -44,16 +41,14 @@ public class Solution34 {
 
     }
 
-    private void printList(List employees) {
+    private void printList(List<String> employees) {
         //Prints the list of employees, along with the number.
         System.out.printf("There are %d employees:%n", employees.size());
 
         for (Object employee : employees) System.out.println(employee);
-
-        System.out.println();
     }
 
-    public List deleteEmployee(String response, List employees) {
+    public List<String> deleteEmployee(String response, List<String> employees) {
         //Deletes the employee based on the user's capitalized response.
         boolean deleted = false;
         for (int i = 0; i < employees.size(); i++) {
@@ -62,24 +57,27 @@ public class Solution34 {
                 deleted = true;
             }
         }
-        //If response isn't an employee name, throws an error message.
+        //If response isn't an employee name, gives an error message.
         if (!deleted)
-            throw new IllegalArgumentException("Invalid name.");
+            System.out.printf("Error: Invalid Employee Name: %s%n", response);
         return employees;
     }
 
     public static void main(String[] arg) {
-        //Create new instance Solution34 "lister"
+        //Prints the list of employees and prompts for the user to type an employee's name.
+        //The employee input is deleted from the list and the new list is printed.
+        Solution34 lister = new Solution34();
 
-        //List employees is equal to the employee list.
-        //Print employees
+        List<String> employees = lister.createList();
+        lister.printList(employees);
 
-        //Print "Enter an employee name to remove: "
-        //String response takes in the input
-        //Response is capitalized.
+        System.out.printf("%nEnter an employee name to remove: ");
+        String response = input.nextLine();
+        response = lister.takeCapitalizedInput(response);
 
-        //The employee is deleted if the name was typed correctly. (employees = deleteEmployee(response, employees))
+        employees = lister.deleteEmployee(response, employees);
 
-        //Print a new line and the new list of employees.
+        System.out.println();
+        lister.printList(employees);
     }
 }
