@@ -3,13 +3,14 @@
  *  Copyright 2021 Zander Preston
  */
 
+import java.util.Scanner;
+
 public class Solution32 {
 
-    //Create final static Scanner "input"
+    private final static Scanner input = new Scanner(System.in);
 
-    private String takeInput() {
-        //returns the user's input.
-        return "";
+    protected String takeInput() {
+        return input.nextLine();
     }
 
     public static void main(String[] arg) {

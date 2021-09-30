@@ -3,57 +3,77 @@
  *  Copyright 2021 Zander Preston
  */
 
-public class NumberGame {
-    //Create static int guessCount = 0
-    //Create static int difficulty
+import java.util.Random;
 
-    //Create instance of Solution32 "inputter"
+public class NumberGame {
+    private int guessCount = 0;
+    private int difficulty;
+
+    private final Solution32 inputter = new Solution32();
+    private final Random random = new Random();
 
     public void setDifficulty() {
-        //Prompts the user to enter the difficulty level: 1, 2, or 3
-        //Validates the user's input is numerical and is between 1 and 3
-        //Stores user's input in String "response"
-            //While the user's input breaks this criteria:
-                //Tell the user that their input is invalid.
-                //Prompts the user to enter the difficulty level: 1, 2, or 3
-                //Stores the input in "response"
-        //Store casted String to int chosenDifficulty
-        //difficulty is equal to chosenDifficulty
+        System.out.print("Enter the difficulty level (1, 2, or 3): ");
+        String response = inputter.takeInput();
+        int chosenDifficulty = 0;
+
+        while (chosenDifficulty < 1 || chosenDifficulty > 3) {
+            try {
+                chosenDifficulty = Integer.parseInt(response);
+            }
+            catch (NumberFormatException e) {
+                System.out.printf("Invalid difficulty!%n");
+                System.out.print("Enter the difficulty level (1, 2, or 3): ");
+                response = inputter.takeInput();
+            }
+        }
+        difficulty = chosenDifficulty;
     }
 
-    public int validateInt() {
-        //Take user's input, data goes into string response
-            //While the user's input is not numerical:
-                //guessCount++
-                //Prompt "Invalid guess! Guess again:"
-        //Take in user's input, stored in response.
-        //Store casted String to int playerGuessNum
-        //Return playerGuessNum
-        return 0;
+    public int validateInt(String response) {
+        int responseInt;
+
+        while(true) {
+            try {
+                responseInt = Integer.parseInt(response);
+                return responseInt;
+            }
+            catch (NumberFormatException e) {
+                guessCount++;
+                System.out.print("Invalid guess! Guess again: ");
+                response = inputter.takeInput();
+            }
+        }
+    }
+
+    public int getRandomNumber(int difficulty) {
+        //Created to simplify the random number getting process.
+        //Returns the chosenNum for the game.
+        return random.nextInt((int)(Math.pow(10, difficulty) + 1));
     }
 
     public void playGame() {
-        //Declare a new Random class named "random"
-        //Integer chosenNum is equal to a random number between 1 and 10^(difficulty).
-            //i.e., A number between 1 and Math.pow(10, difficulty)
-        //String playerGuess and integer playerGuessNum are made.
-        //Prompt "I have my number. What's your guess? "
-        //Take in user's input and validate it's a number (i.e., validateInt())
-        //While playerGuessNum does not equal to chosenNum:
-            //If playerGuessNum < chosenNum:
-                //guessCount++
-                //Prompt "Too low! Guess again: "
-                //Take in user's input and validate it's a number.
-            //If playerGuessNum > chosenNum:
-                //guessCount++
-                //Prompt "Too high! Guess again: "
-                //Take in user's input and validate it's a number.
-        //Print "You got it in 'guessCount' guesses!"
-        //guessCount is set to 0
+        int chosenNum = getRandomNumber(difficulty);
+        int playerGuessNum;
+        String response;
+
+        System.out.print("I have my number. What's your guess? ");
+        response = inputter.takeInput();
+        playerGuessNum = validateInt(response);
+
+        while(playerGuessNum != chosenNum) {
+            guessCount++;
+            if (playerGuessNum < chosenNum) {
+                System.out.print("Too low! Guess again: ");
+            }
+            else {
+                System.out.print("Too high! Guess again: ");
+            }
+            response = inputter.takeInput();
+            playerGuessNum = validateInt(response);
+        }
+        System.out.printf("You got it in %d guesses!%n%n", guessCount);
+        guessCount = 0;
     }
 
-    public int getGuessCount() {
-        //returns guessCount
-        return 0;
-    }
 }
