@@ -11,38 +11,48 @@ public class Solution35 {
     Scanner input = new Scanner(System.in);
 
     private String takeInput() {
+        //Takes in the user's input.
         return input.nextLine();
     }
 
-    public int getRandValue(ArrayList names) {
+    public int getRandValue(List<String> names) {
+        //Returns a random value between 0 and the size of the list of names.
         int index = names.size();
         return random.nextInt(index);
     }
 
     public List<String> makeList() {
-        ArrayList<String> names = new ArrayList<>();
+        //Creates a list and asks the user for a name. If the name is blank, the list is returned.
+        List<String> names = new ArrayList<>();
         String response = "null";
 
-        while(!response.equals("")) {
+        while(!response.isBlank()) {
             System.out.print("Enter a name: ");
             response = takeInput();
-            if (!response.equals(""))
+
+            if (!response.isBlank())
                 names.add(response);
         }
         return names;
     }
 
     public static void main(String[] arg) {
-        //Create instance of Class Solution35 "lister"
-        //Print "Type in names and the program will pick a winner. Press enter whenever you are finished."
+        //Prompts the user for names and prints out a random name to be the winner.
+        Solution35 lister = new Solution35();
 
-        //ArrayList names is set equal to makeList()
-        //While names is empty:
-            //Output you need to input at least one name!
-            //names = makeList()
+        System.out.println("Type in names and the program will pick a winner. Press enter whenever you are finished.");
 
-        //Integer index is set equal to getRandValue(names)
+        List<String> names = lister.makeList();
 
-        //Print "The winner is... 'names.get(index)'."
+        //Validates that the list is not empty.
+        while(names.isEmpty()) {
+            System.out.println("You need to input at least one name!");
+            names = lister.makeList();
+        }
+
+        int index = lister.getRandValue(names);
+
+        System.out.printf("The winner is... %s.%n", names.get(index));
+
     }
 }
