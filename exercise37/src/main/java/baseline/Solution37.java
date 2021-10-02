@@ -14,7 +14,7 @@ public class Solution37 {
 
     private String takeInput(String prompt) {
         //Prompts the user and takes in the user's input.
-        System.out.println(prompt);
+        System.out.print(prompt);
         return input.nextLine();
     }
 
@@ -36,7 +36,6 @@ public class Solution37 {
 
     public List<Character> createAlphabet() {
         //Creates a list containing both the Uppercase and lowercase alphabet.
-        //Simplified loops into a single array for the sake of memory
         Character[] tempArray = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S',
                                  'T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l',
                                  'm','n','o','p','q','r','s','t','u','v','w','x','y','z'};
@@ -50,7 +49,6 @@ public class Solution37 {
     public List<Character> createSpecialList() {
         //Creates a list containing special characters.
         //"!"#$%&'()*+-./" ":;<=>?@" "[\]^_`" "{|}~"
-        //Simplified loops into a single array for the sake of memory
         Character[] tempArray = {'!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=',
                                  '>','?','@','[','\\',']','^','_','`','{','|','}','~'};
         List<Character> specialList = new ArrayList<>();
@@ -62,7 +60,6 @@ public class Solution37 {
 
     public List<Integer> createNumberList() {
         //Creates a list containing numbers 0-9
-        //Simplified loop into a single array for the sake of memory
         Integer[] tempArray = {0,1,2,3,4,5,6,7,8,9};
         List<Integer> numberList = new ArrayList<>();
 
@@ -72,28 +69,34 @@ public class Solution37 {
     }
 
     public static void main(String[] arg) {
-        //Create integer minLength
-        //Create integer numSpecial
-        //Create integer numNumbers
+        //Prompts the user for the:
+            //Minimum password length, the number of digits, and the number of special characters.
+        //Then, using that criteria, generates a random password.
 
-        //minLength is equal to the validated number of the user's input
-            //After the prompt: "What's the minimum length?"
+        Solution37 prompter = new Solution37();
 
-        //numSpecial is equal to the validated number of the user's input
-        //After the prompt: "How many special characters?"
+        int minLength;
+        int numSpecial;
+        int numNumbers;
 
-        //numNumbers is equal to the validated number of the user's input
-        //After the prompt: "How many numbers?"
+        String tempPrompt = "What's the minimum length? ";
+        minLength = prompter.validateNumber(tempPrompt, prompter.takeInput(tempPrompt));
 
-        //List of Characters alphabet = createAlphabet()
-        //List of Characters special = createSpecialList()
-        //List of Integers numbers = createNumberList()
+        tempPrompt = "How many special characters? ";
+        numSpecial = prompter.validateNumber(tempPrompt, prompter.takeInput(tempPrompt));
 
-        //Create new instance baseline.Password "passwordCreator" with constructors alphabet, special, and numbers
+        tempPrompt = "How many numbers? ";
+        numNumbers = prompter.validateNumber(tempPrompt, prompter.takeInput(tempPrompt));
 
-        //String password is equal to the password passwordCreator makes from the criteria given by the user.
+        List<Character> alphabet = prompter.createAlphabet();
+        List<Character> special = prompter.createSpecialList();
+        List<Integer> numbers = prompter.createNumberList();
 
-        //Output "Your password is 'password'"
+        Password passwordCreator = new Password(alphabet, special, numbers);
+
+        String password = passwordCreator.createPassword(minLength, numSpecial, numNumbers);
+
+        System.out.printf("Your password is %s%n", password);
     }
 
 }

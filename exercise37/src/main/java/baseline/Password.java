@@ -18,6 +18,9 @@ public class Password {
     }
 
     public String createPassword(int minLength, int numSpecial, int numNumbers) {
+        //Creates a randomly generated password with the constraints provided.
+
+        //The number of letters must at least match the number of numbers and special characters.
         int numCharacters = Math.max(2 * (numSpecial + numNumbers), minLength);
 
         int roll;
@@ -25,19 +28,24 @@ public class Password {
         int numCnt = 0;
         StringBuilder password = new StringBuilder();
 
+        //Password building loop
         while(true) {
+            //Breaks the loop
             if(specialCnt == numSpecial && numCnt == numNumbers && password.length() >= numCharacters)
                 break;
             else {
                 roll = random.nextInt(3);
+                //0 = special character is input
                 if(roll == 0 && specialCnt != numSpecial) {
                     specialCnt++;
                     password.append(specialList.get(random.nextInt(specialList.size())));
                 }
+                //1 = number is input
                 else if(roll == 1 && numCnt != numNumbers) {
                     numCnt++;
                     password.append(numberList.get(random.nextInt(numberList.size())));
                 }
+                //2 = letter is input
                 else
                     password.append(alphabetList.get(random.nextInt(alphabetList.size())));
             }
