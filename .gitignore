@@ -1,3 +1,4 @@
 **/.gradle/
 **/build/
 **/discord.xml
+**/.idea/sonarlint/
