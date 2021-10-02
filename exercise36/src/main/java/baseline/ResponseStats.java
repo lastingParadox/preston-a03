@@ -1,67 +1,92 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Zander Preston
+ */
+
 package baseline;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class ResponseStats {
 
-    //Create private static int array "responseArray"
+    private final int[] responseArray;
 
     ResponseStats(int[] responseArray) {
-        //This responseArray is equal to the provided responseArray.
+        //Constructor method; adds the array to the class.
+        this.responseArray = responseArray;
     }
 
     public String printList() {
-        //Create new StringBuilder output
-        //Append "Numbers: " to output
+        //Prints the array of integers on a line.
+        StringBuilder output = new StringBuilder();
 
-        //Loop for each value in responseArray:
-            //Append "'current value', " to output
-        //return String value of output
+        output.append("Numbers:");
+        output.append(String.format(" %d", responseArray[0]));
 
-        return "";
+        for (int i = 1; i < responseArray.length; i++) {
+            output.append(String.format(", %d", responseArray[i]));
+        }
+
+        return String.valueOf(output);
     }
 
     public double average() {
-        //Integer "size" is equal to length of responseArray
-        //Create double "sum" and set it to 0.
+        //Gets the average of the array of integers.
+        int size = responseArray.length;
+        double sum = 0;
 
-        //Loop for each value in responseArray:
-            //sum is added to by the current value.
-        //return sum/size;
-        return 0;
+        for (int value : responseArray) {
+            sum += value;
+        }
+
+        //BigDecimal is used to internally round the average to the hundredths place.
+        BigDecimal temp = BigDecimal.valueOf(sum/size);
+        temp = temp.setScale(2, RoundingMode.HALF_UP);
+
+        return temp.doubleValue();
     }
 
     public int min() {
-        //Integer "size" is equal to length of responseArray
-        //Integer "minimum" is set to the first value of the array.
+        //Gets the minimum of the array of integers.
+        int size = responseArray.length;
+        int minimum = responseArray[0];
 
-        //Loop for each value in responseArray except for the first one:
-            //If the current value is smaller than minimum:
-                //minimum is equal to the current value.
-
-        //return minimum
-        return 0;
+        for(int i = 1; i<size; i++) {
+            if(responseArray[i] < minimum) {
+                minimum = responseArray[i];
+            }
+        }
+        return minimum;
     }
 
     public int max() {
-        //Integer "size" is equal to length of responseArray
-        //Integer "maximum" is set to the first value of the array.
+        //Gets the maximum of the array of integers.
+        int size = responseArray.length;
+        int maximum = responseArray[0];
 
-        //Loop for each value in responseArray except for the first one:
-            //If the current value is larger than maximum:
-                //maximum is equal to the current value.
-
-        //return maximum
-        return 0;
+        for(int i = 1; i<size; i++) {
+            if(responseArray[i] > maximum) {
+                maximum = responseArray[i];
+            }
+        }
+        return maximum;
     }
 
     public double std() {
-        //Integer "size" is equal to length of responseArray
-        //double "mean" is equal to average()
-        //double standardSum is set to zero
+        //Gets the standard deviation of the array of integers.
+        int size = responseArray.length;
+        double mean = average();
+        double standardSum = 0;
 
-        //For each value in responseArray:
-            //standardSum is equal to ('current value' - mean) squared
+        for(int value : responseArray) {
+            standardSum += Math.pow((value - mean), 2);
+        }
 
-        //return the square root of standardSum / size-1
-        return 0;
+        //BigDecimal is used to internally round the standard deviation to the hundredths place.
+        BigDecimal temp = BigDecimal.valueOf(Math.sqrt(standardSum/(size)));
+        temp = temp.setScale(2, RoundingMode.HALF_UP);
+
+        return temp.doubleValue();
     }
 }

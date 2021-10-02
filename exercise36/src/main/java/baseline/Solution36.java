@@ -5,51 +5,82 @@
 
 package baseline;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Solution36 {
 
+    private static final int DONE = -1;
+    private static final Scanner input = new Scanner(System.in);
+
     private String takeInput() {
-        //Returns user's input
-        return "";
+        //Takes and returns the user's input.
+        return input.nextLine().toLowerCase();
     }
 
     private int validateNum(String response) {
-        //Create integer responseNum
-        //Loop until responseNum is filled:
-            //Try to cast response to an integer
-                //While response cannot be casted as an integer:
-                    //Print "Invalid response: Please input a response time in an integer format."
-                    //Print "Enter a number: "
-                    //response stores the user's input.
-            //responseNum is equal to the casted int value of response
-        //return responseNum
-        return 0;
+        //Validates that the response was an integer and returns the integer.
+        int responseNum;
+
+        while(true) {
+            try {
+                //If the user inputs done within this loop, return a value to finish the list.
+                if (response.equals("done")) {
+                    return DONE;
+                }
+
+                responseNum = Integer.parseInt(response);
+
+                //Validation that the number was not negative.
+                if (responseNum < 0) throw new IllegalArgumentException();
+
+                return responseNum;
+            }
+            //Gets a new response if response is not an integer or is negative.
+            catch (IllegalArgumentException e) {
+                System.out.println("Invalid response: Please input a response time in a positive integer format.");
+                System.out.print("Enter a number: ");
+                response = takeInput();
+            }
+        }
     }
 
-    public List<Integer> createTempList() {
-        //Create String "listFinished"
-        //Create String "response"
-        //Create integer "responseInt"
-        //Create list of integers called "tempList"
+    private List<Integer> createTempList() {
+        //Creates a temporary list to be converted to an array of integers.
+        String response;
+        int responseInt = 0;
+        List<Integer> tempList = new ArrayList<>();
 
-        //While listFinished is not equal to "done":
-            //Print "Enter a number: "
-            //response stores the user's input.
-            //If response is equal to "done":
-                //break the loop
-            //responseInt is set equal to validateNum(response)
-            //Add responseInt to tempList
-        //return the list
-        return null;
+        //Input loop
+        while(true) {
+            System.out.print("Enter a number: ");
+            response = takeInput();
+
+            //Breaks the loop if response equals "done" or validation returns DONE.
+            if (response.equals("done") || responseInt == DONE) {
+                break;
+            }
+
+            //Validates that the response was an integer and returns it.
+            responseInt = validateNum(response);
+
+            if (responseInt != DONE) {
+                tempList.add(responseInt);
+            }
+        }
+        return tempList;
     }
 
     public int[] createArray(List<Integer> tempList) {
-        //Create array of integers "timeArray" that is the size of tempList
-        //Loop through all the values in tempList (i):
-            //Add list index i to array index i.
-        //return timeArray
-        return null;
+        //Creates and returns an array containing the values in the temporary list.
+        int[] timeArray = new int[tempList.size()];
+
+        for(int i = 0; i < tempList.size(); i++) {
+            timeArray[i] = tempList.get(i);
+        }
+
+        return timeArray;
     }
 
     public static void main(String[] arg) {
