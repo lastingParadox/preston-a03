@@ -5,60 +5,69 @@
 
 package baseline;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Solution38 {
 
-    private int validateValue(String response) {
-        //Create integer indexValue.
+    private static final Scanner input = new Scanner(System.in);
 
-        //Loop:
-            //Try to cast tempArray[i] to an integer.
-            //While tempArray[i] cannot be changed to an integer:
-                //Output "Invalid input 'tempArray[i]' for value 'i+1'. Please input a single integer."
-                //response is set to the user's input.
-            //indexValue = casted int response.
-        //return indexValue
-        return 0;
+    private int validateValue(String response, int index) {
+        int indexValue;
+
+        while (true) {
+            try {
+                indexValue = Integer.parseInt(response);
+                return indexValue;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.printf("Invalid input %s for index %d. Please input a single integer.", response, index);
+                response = input.nextLine();
+            }
+        }
     }
 
     public int[] convertToArray(String response) {
-        //Create a string array "tempArray" and set it equal to the split response with a delimiter of a space
-        //Create list of Integers "tempList"
-        //Create int numValue
+        String[] tempArray = response.split(" ", 0);
+        List<Integer> tempList = new ArrayList<>();
 
-        //Loop for each value in tempArray  (i):
-            //Add validateValue(tempArray[i]) to tempList
+        for (int i = 0; i < tempArray.length; i++)
+            tempList.add(validateValue(tempArray[i], i+1));
 
-        //Create array of ints "numArray"
-        //Loop for each value in "tempList" (i):
-            //numArray[i] is set equal to tempList.get(i)
+        int[] numArray = new int[tempList.size()];
 
-        //return numArray
-        return null;
+        for (int i = 0; i < tempList.size(); i++)
+            numArray[i] = tempList.get(i);
+
+        return numArray;
     }
 
     public int[] filterEvenNumbers(int[] original) {
-        //Create list of Integers "tempList"
+        List<Integer> tempList = new ArrayList<>();
 
-        //Loop for all values in original (value):
-            //If value mod 2 is equal to zero:
-                //Add value to tempList
+        for (int value : original) {
+            if (value % 2 == 0)
+                tempList.add(value);
+        }
 
-        //Create array of integers "filtered"
-        //Loop for each value in "tempList" (i):
-            //filtered[i] is set equal to tempList.get(i)
-        //return filtered
-        return null;
+        int[] filtered = new int[tempList.size()];
+
+        for(int i = 0; i < tempList.size(); i++)
+            filtered[i] = tempList.get(i);
+
+        return filtered;
     }
 
     public String printArray(int[] array) {
-        //Create new StringBuilder output
+        StringBuilder output = new StringBuilder();
 
-        //Append "'array[0]'" to output
-        //For each value in array except the first index (value):
-            //Append " 'value'" to output.
+        output.append(array[0]);
 
-        //return string value of output.
-        return "";
+        for (int i = 1; i<array.length; i++)
+            output.append(String.format(" %d", array[i]));
+
+        return String.valueOf(output);
     }
 
     public static void main(String[] arg) {
@@ -72,7 +81,7 @@ public class Solution38 {
                 //Response is set equal to user's input.
 
         //Array of ints responseArray is equal to filterer.convertToArray(response)
-        //responseArray is set equal to filterer.filterEvenNumbers(responseArray);
+        //responseArray is set equal to filterer.filterEvenNumbers(responseArray)
 
         //Print "The even numbers are 'printArray(responseArray)'."
     }
