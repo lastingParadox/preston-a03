@@ -14,6 +14,7 @@ public class Solution38 {
     private static final Scanner input = new Scanner(System.in);
 
     private int validateValue(String response, int index) {
+        //Validates that the user's response is an integer.
         int indexValue;
 
         while (true) {
@@ -22,13 +23,15 @@ public class Solution38 {
                 return indexValue;
             }
             catch (IllegalArgumentException e) {
-                System.out.printf("Invalid input %s for index %d. Please input a single integer.", response, index);
+                System.out.printf("Invalid input %s for index %d. Please input a single integer. ", response, index);
                 response = input.nextLine();
             }
         }
     }
 
     public int[] convertToArray(String response) {
+        //Splits the user's response into an array of strings
+        //Then converts that array of strings into an array of integers and returns the result
         String[] tempArray = response.split(" ", 0);
         List<Integer> tempList = new ArrayList<>();
 
@@ -44,6 +47,7 @@ public class Solution38 {
     }
 
     public int[] filterEvenNumbers(int[] original) {
+        //Filters out the odd numbers from the array and returns the filtered array.
         List<Integer> tempList = new ArrayList<>();
 
         for (int value : original) {
@@ -60,6 +64,7 @@ public class Solution38 {
     }
 
     public String printArray(int[] array) {
+        //Outputs the array as a string with format "value value value..."
         StringBuilder output = new StringBuilder();
 
         output.append(array[0]);
@@ -71,18 +76,22 @@ public class Solution38 {
     }
 
     public static void main(String[] arg) {
-        //Create new instance Solution38 "filterer"
+        //Prompts the user to input a list of numbers and outputs the even numbers from their input.
+        Solution38 filterer = new Solution38();
 
-        //Prompt the user to enter a list of numbers, separated by spaces.
-        //String response is set equal to user's input.
-        //Loop:
-            //If user's input is blank:
-                //Output "Please input at least one integer value."
-                //Response is set equal to user's input.
+        System.out.print("Enter a list of numbers, separated by spaces: ");
 
-        //Array of ints responseArray is equal to filterer.convertToArray(response)
-        //responseArray is set equal to filterer.filterEvenNumbers(responseArray)
+        String response = input.nextLine();
 
-        //Print "The even numbers are 'printArray(responseArray)'."
+        while (response.isBlank()) {
+            System.out.println("Please input at least one integer value.");
+            System.out.print("Enter a list of numbers, separated by spaces: ");
+            response = input.nextLine();
+        }
+
+        int[] responseArray = filterer.convertToArray(response);
+        responseArray = filterer.filterEvenNumbers(responseArray);
+
+        System.out.printf("The even numbers are %s.%n", filterer.printArray(responseArray));
     }
 }
