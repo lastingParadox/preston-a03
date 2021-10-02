@@ -24,11 +24,17 @@ public class Solution37 {
         while(true) {
             try {
                 responseNum = Integer.parseInt(response);
+
+                //Verifies responseNum is not negative.
+                if (responseNum < 0) {
+                    throw new IllegalArgumentException();
+                }
+
                 return responseNum;
             }
             catch (IllegalArgumentException e) {
-                System.out.println("Invalid response! Please input a whole number.");
-                System.out.println(prompt);
+                System.out.println("Invalid response! Please input a positive whole number.");
+                System.out.print(prompt);
                 response = input.nextLine();
             }
         }
