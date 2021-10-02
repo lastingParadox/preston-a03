@@ -5,44 +5,53 @@
 
 package baseline;
 
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Solution39 {
 
+    private static final String FIRST = "first_name";
+    private static final String LAST = "last_name";
+    private static final String POSITION = "position";
+    private static final String SEPARATION = "sd";
+
     public Map<String, String> createMap(String first, String last, String position, String separation) {
-        //Create map of Strings with keys Strings "map"
+        //Reduces the clutter of creating and adding values to a map
+        Map<String, String> map = new HashMap<>();
 
-        //Put "first_name", 'first' in map
-        //Put "last_name", 'last' in map
-        //Put "position", 'position' in map
-        //Put "sd", 'separation' in map
+        map.put(FIRST, first);
+        map.put(LAST, last);
+        map.put(POSITION, position);
+        map.put(SEPARATION, separation);
 
-        //return map
-        return null;
+        return map;
     }
 
-    public List<Map<String, String>> sortList(List<Map<String, String>> employees) {
-        //Using Collections.sort() with employees and a Comparator:
-            //Compare Map1 to Map2 last_name, loop
-            //Return the sorted list.
-        return null;
+    public void sortList(List<Map<String, String>> employees) {
+        //Uses List.sort to sort the maps one by one in the List.
+            //Uses a lambda expression as a callback for comparing each map's last_name key.
+        employees.sort(Comparator.comparing(map -> map.get(LAST)));
     }
 
     public void printTable(List<Map<String, String>> employees) {
-        //Create new StringBuilder "output"
-        //Append header of table to output
-            //i.e., "Name                | Position          | Separation Date\n"
-        //Append underline of header to output
-            //i.e., "--------------------|-------------------|----------------\n"
-        //For each value in employees (employee):
-            //Append employee
-                //i.e., "'first_Name' 'lastName' | 'position'       | 'sd'         \n"
+        //Prints the table, formatted akin to the example response in the exercise.
+        StringBuilder output = new StringBuilder();
 
-        //Print output
+        output.append(String.format("Name%17s Position%11s SeparationDate%n", "|", "|"));
+        output.append(String.format("--------------------|-------------------|----------------%n"));
+
+        for(Map<String, String> employee : employees) {
+            output.append(String.format("%-20s| %-18s| %s%n", employee.get(FIRST)+" "+employee.get(LAST),
+                                                            employee.get(POSITION), employee.get(SEPARATION)));
+        }
+
+        System.out.println(output);
     }
 
     public static void main(String[] arg) {
+
         //Create new instance Solution39 "sorter"
         //Create new list of maps "employeeList"
 
