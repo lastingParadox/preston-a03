@@ -29,7 +29,6 @@ public class Solution36 {
                 if (response.equals("done")) {
                     return DONE;
                 }
-
                 responseNum = Integer.parseInt(response);
 
                 //Validation that the number was not negative.
@@ -48,19 +47,16 @@ public class Solution36 {
 
     private List<Integer> createTempList() {
         //Creates a temporary list to be converted to an array of integers.
-        String response;
+        String response = "";
         int responseInt = 0;
         List<Integer> tempList = new ArrayList<>();
 
         //Input loop
-        while(true) {
+        while (!response.equals("done") && responseInt != DONE) {
+            //Breaks the loop if response equals "done" or validation returns DONE (-1).
+
             System.out.print("Enter a number: ");
             response = takeInput();
-
-            //Breaks the loop if response equals "done" or validation returns DONE.
-            if (response.equals("done") || responseInt == DONE) {
-                break;
-            }
 
             //Validates that the response was an integer and returns it.
             responseInt = validateNum(response);
@@ -84,23 +80,31 @@ public class Solution36 {
     }
 
     public static void main(String[] arg) {
-        //Create instance Solution36 "lister"
+        //Tells the user to input response time
+        //Returns the average, minimum, maximum, and standard deviation of the times provided
+        Solution36 lister = new Solution36();
 
-        //Print "Enter one response time in milliseconds per line. Type "done" when you are finished."
+        System.out.println("Enter one response time in milliseconds per line. Type \"done\" when you are finished.");
 
-        //List of integers temp is equal to createTempList()
-        //Array of integers responseArray is equal to createArray(temp)
+        List<Integer> temp = lister.createTempList();
 
-        //Create instance ResponseStats "calculator" with constructor responseArray
+        while (temp.isEmpty()) {
+            System.out.println("Please input at least one response time.");
+            temp = lister.createTempList();
+        }
 
-        //Create stringBuilder output
+        int[] responseArray = lister.createArray(temp);
 
-        //Append calculator.printList() to output
-        //Append "The average is 'calculator.average()'" to output
-        //Append "The minimum is 'calculator.min()'" to output
-        //Append "The maximum is 'calculator.max()'" to output
-        //Append "The standard deviation is 'calculator.std()'" to output
+        ResponseStats calculator = new ResponseStats(responseArray);
 
-        //Print output
+        //I wanted to use a StringBuilder but IntelliJ thinks this is better
+        String output = calculator.printList() +
+                String.format("%nThe average is %.2f", calculator.average()) +
+                String.format("%nThe minimum is %d", calculator.min()) +
+                String.format("%nThe maximum is %d", calculator.max()) +
+                String.format("%nThe standard deviation is %.2f", calculator.std());
+
+        System.out.println(output);
+
     }
 }
