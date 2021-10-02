@@ -105,6 +105,5 @@ public class Solution36 {
                 String.format("%nThe standard deviation is %.2f", calculator.std());
 
         System.out.println(output);
-
     }
 }
