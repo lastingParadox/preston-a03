@@ -22,7 +22,8 @@ public class PaymentCalculator {
     }
 
     PaymentCalculator(double balance, double apr, double monthPayment) {
-        //PaymentCalculator constructor that rounds up balance and monthPayment to the nearest cent and gets the daily rate from the APR percentage.
+        //PaymentCalculator constructor that rounds up balance and monthPayment to the nearest cent
+        // And gets the daily rate from the APR percentage.
         this.balance = round(balance, 2);
         dailyRate = (apr/100)/365;
         this.monthPayment = round(monthPayment, 2);

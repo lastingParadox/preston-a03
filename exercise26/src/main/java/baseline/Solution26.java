@@ -7,6 +7,9 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 26 - Months to Pay Off a Credit Card
+//  Using the user's balance, APR, and monthly payments, returns how many months it will take to pay off the card.
+
 public class Solution26 {
 
     static final Scanner input = new Scanner(System.in);
@@ -33,7 +36,8 @@ public class Solution26 {
     }
 
     public static void main(String[] arg) {
-        //Prompts the user to enter information regarding their card debt and returns the number of months they need to pay it off.
+        //Prompts the user to enter information regarding their card debt
+        //  Returns the number of months they need to pay it off.
 
         Solution26 reader = new Solution26();
 
