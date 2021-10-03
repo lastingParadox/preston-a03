@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+//Exercise 35 - Picking a Winner
+//  Prompts the user to input a list of names. Whenever the user is finished, returns a random name as the "winner".
+
 public class Solution35 {
 
     Random random = new Random();
     Scanner input = new Scanner(System.in);
 
     private String takeInput() {
-        //Takes in the user's input.
+        //Returns the user's input.
         return input.nextLine();
     }
 
@@ -24,14 +27,14 @@ public class Solution35 {
     public List<String> makeList() {
         //Creates a list and asks the user for a name. If the name is blank, the list is returned.
         List<String> names = new ArrayList<>();
-        String response = "null";
+
+        System.out.print("Enter a name: ");
+        String response = takeInput();
 
         while(!response.isBlank()) {
+            names.add(response);
             System.out.print("Enter a name: ");
             response = takeInput();
-
-            if (!response.isBlank())
-                names.add(response);
         }
         return names;
     }
