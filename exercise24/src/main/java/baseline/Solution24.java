@@ -7,6 +7,9 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise24: Anagram Checker
+//  Sees if two of the user's inputs are anagrams and returns whether they are anagrams of each other.
+
 public class Solution24 {
 
     static final Scanner input = new Scanner(System.in);
@@ -19,9 +22,7 @@ public class Solution24 {
 
     public static void main(String[] args) {
         //Prompts the user for two strings and outputs whether the strings are anagrams.
-
         Solution24 reader = new Solution24();
-
         Anagram sorter = new Anagram();
 
         //Actual prompt for the strings.
