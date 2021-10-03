@@ -7,36 +7,43 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 28 - Adding Numbers
+//  Takes in 5 numbers form the user and adds them using repetition (loop).
+
 public class Solution28 {
 
     private static final int LOOPNUM = 5;
     private static final Scanner input = new Scanner(System.in);
 
-    //Takes in the user's input and validates if it is an integer. If not, tells the user to enter a number. Returns the response.
     private int takeIntInput() {
+        //Takes in the user's input and validates if it is an integer. If not, tells the user to enter a number.
+        //Then returns the response.
         String response;
-        int intResponse;
 
         //Prompts the user and stores their response.
         System.out.print("Enter a number: ");
         response = input.nextLine();
 
-        //Validator; Tries to convert the response to an integer. If it cannot, prompts the user to enter a number and stores the input.
-        while(true) {
+        return validateNum(response);
+    }
+
+    private int validateNum(String response) {
+        //Validates that the user's input is an integer. If not, prompts the user to input another number.
+        int intResponse;
+
+        while (true) {
             try {
                 intResponse = Integer.parseInt(response);
                 return intResponse;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.printf("%s is not a number.%nEnter a number: ", response);
                 response = input.nextLine();
             }
-
         }
     }
 
-    //Prompts the user to enter a number LOOPNUM times and gets the total of the user's inputs.
     public int addTotal() {
+        //Prompts the user to enter a number LOOPNUM times and gets the total of the user's inputs.
         int total = 0;
 
         for (int i = 0; i<LOOPNUM; i++)
@@ -45,8 +52,9 @@ public class Solution28 {
         return total;
     }
 
-    //Overloaded addTotal() method that takes in an array of integers instead of user input.
     public int addTotal(int[] array) {
+        //Overloaded addTotal() method that takes in an array of integers instead of user input.
+        //Used in unit testing.
         int total = 0;
 
         for (int i = 0; i<LOOPNUM; i++)
@@ -55,8 +63,8 @@ public class Solution28 {
         return total;
     }
 
-    //Sets an integer equal to the total of the user's responses and prints it out.
     public static void main(String[] arg) {
+        //Sets an integer equal to the total of the user's responses and prints it out.
         Solution28 numCalculator = new Solution28();
 
         int total = numCalculator.addTotal();
