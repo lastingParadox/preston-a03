@@ -5,6 +5,9 @@
 
 package baseline;
 
+//Exercise 30 - Multiplication Table
+//  Without using tabs, creates a formatted 12x12 multiplication table.
+
 public class Solution30 {
 
     private static final int TABLESIZE = 12;
@@ -21,7 +24,9 @@ public class Solution30 {
         int product;
         StringBuilder table = new StringBuilder();
 
+        //Rows
         for (int i = 1; i<=tableSize; i++) {
+            //Cells
             for (int j = 1; j<=tableSize; j++) {
                 product = multiply(i, j);
                 table.append(String.format("%5d", product));
@@ -32,6 +37,7 @@ public class Solution30 {
     }
 
     public static void main(String[] arg) {
+        //Outputs a formatted 12x12 multiplication table.
         Solution30 printer = new Solution30();
 
         System.out.printf("%s", printer.createMultiplicationTable(TABLESIZE));
