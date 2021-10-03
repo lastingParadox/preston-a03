@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//Exercise 39 - Sorting Records
+//  Sorts a list of maps of employees and outputs the data in a tabular format.
+
 public class Solution39 {
 
     private static final String FIRST = "first_name";
