@@ -7,6 +7,10 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 32 - Guess the Number Game
+//  Gets the user's chosen difficulty level (from 1-3) and generates a random number between 1 to 10^difficulty.
+//  Once the user guesses the number, returns the number of guesses and asks if the user wants to play again.
+
 public class Solution32 {
 
     private static final Scanner input = new Scanner(System.in);

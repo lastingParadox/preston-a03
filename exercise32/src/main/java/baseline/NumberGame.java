@@ -21,11 +21,15 @@ public class NumberGame {
         int chosenDifficulty = 0;
 
         //While the difficulty is an incorrect value, prompts the user to input again.
-        while (chosenDifficulty < 1 || chosenDifficulty > 3) {
+        while (true) {
             try {
                 chosenDifficulty = Integer.parseInt(response);
+                if(chosenDifficulty < 1 || chosenDifficulty > 3) {
+                    throw new IllegalArgumentException();
+                }
+                break;
             }
-            catch (NumberFormatException e) {
+            catch (IllegalArgumentException e) {
                 System.out.printf("Invalid difficulty!%n");
                 System.out.print("Enter the difficulty level (1, 2, or 3): ");
                 response = inputter.takeInput();
@@ -53,8 +57,8 @@ public class NumberGame {
     }
 
     public int getRandomNumber(int difficulty) {
-        //Created to simplify the random number getting process.
-        //Returns the chosenNum for the game.
+        //Created to condense the random number getting process.
+        //Returns the chosenNum for the game based on the difficulty.
         return random.nextInt((int)(Math.pow(10, difficulty) + 1));
     }
 
