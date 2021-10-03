@@ -7,6 +7,9 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 29 - Handling Bad Input
+//  Takes in the user's rate of return and outputs the time (in years) it will take to double the investment.
+
 public class Solution29 {
 
     private static final Scanner input = new Scanner(System.in);
@@ -26,7 +29,7 @@ public class Solution29 {
                 doubleResponse = Double.parseDouble(response);
 
                 //Nonzero validation
-                while (doubleResponse == 0) {
+                while (doubleResponse <= 0) {
                     System.out.println("Please enter a value greater than zero.");
                     response = takeInput();
                     doubleResponse = Double.parseDouble(response);
@@ -47,12 +50,14 @@ public class Solution29 {
     }
 
     public static void main(String[] arg) {
-        //Prompts the user to input a rate of return and returns the years it will take to double an investment.
+        //Prompts the user to input a rate of return
+        //  Returns the years it will take to double an investment.
         Solution29 calculator = new Solution29();
 
         String response = calculator.takeInput();
         double rate = calculator.validateDoubleResponse(response);
 
-        System.out.printf("It will take %.2f years to double your initial investment.", calculator.calcDoubleTime(rate));
+        System.out.printf("It will take %.2f years to double your initial investment.",
+                          calculator.calcDoubleTime(rate));
     }
 }
