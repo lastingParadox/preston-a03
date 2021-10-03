@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+//Exercise 33 - Magic 8 Ball
+//  Asks the user for a question and returns with an answer of "Yes", "No", or "Ask again later."
+
 public class Solution33 {
 
     Random random = new Random();
