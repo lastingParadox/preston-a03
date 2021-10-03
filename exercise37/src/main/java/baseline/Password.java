@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Zander Preston
+ */
+
 package baseline;
 
 import java.util.List;
@@ -12,6 +17,7 @@ public class Password {
     Random random = new Random();
 
     Password(List<Character> alphabet, List<Character> special, List<Integer> numbers) {
+        //Password Constructor
         alphabetList = alphabet;
         specialList = special;
         numberList = numbers;
@@ -30,7 +36,9 @@ public class Password {
 
         //Password building loop
         while(true) {
-            //Breaks the loop
+            //Breaks the loop if the special count equals the number of special characters,
+            //  the number count equals the number of digits, and the length is greater than or equal to
+            //  the minimum length.
             if(specialCnt == numSpecial && numCnt == numNumbers && password.length() >= numCharacters)
                 break;
             else {

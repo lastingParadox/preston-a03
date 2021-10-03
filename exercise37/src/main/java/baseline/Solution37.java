@@ -1,12 +1,17 @@
-package baseline;/*
+/*
  *  UCF COP3330 Fall 2021 Assignment 3 Solutions
  *  Copyright 2021 Zander Preston
  */
+
+package baseline;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+
+//Exercise 37 - Password Generator
+//  Based on the given minimum length, number of special characters, and numbers, generates a random password.
 
 public class Solution37 {
 
@@ -54,7 +59,7 @@ public class Solution37 {
 
     public List<Character> createSpecialList() {
         //Creates a list containing special characters.
-        //"!"#$%&'()*+-./" ":;<=>?@" "[\]^_`" "{|}~"
+        //"!"#$%&'()*+-./:;<=>?@[\]^_`{|}~"
         Character[] tempArray = {'!','"','#','$','%','&','\'','(',')','*','+',',','-','.','/',':',';','<','=',
                                  '>','?','@','[','\\',']','^','_','`','{','|','}','~'};
         List<Character> specialList = new ArrayList<>();
