@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Exercise 34 - Employee List Removal
+//  Shows the user the list of employees and prompts the user for a name to remove.
+//  Outputs the new list without the chosen employee.
+
 public class Solution34 {
 
     private static final Scanner input = new Scanner(System.in);
@@ -14,7 +18,7 @@ public class Solution34 {
         StringBuilder capitalized = new StringBuilder();
         capitalized.append(Character.toUpperCase(response.charAt(0)));
 
-        for(int i = 1; i < response.length();i++) {
+        for(int i = 1; i < response.length(); i++) {
             char ch = response.charAt(i);
 
             if(response.charAt(i-1) == ' ') {
@@ -38,14 +42,14 @@ public class Solution34 {
         employees.add("Jeremy Goodwin");
 
         return employees;
-
     }
 
     private void printList(List<String> employees) {
-        //Prints the list of employees, along with the number.
+        //Prints the list of employees, along with the number of employees.
         System.out.printf("There are %d employees:%n", employees.size());
 
-        for (Object employee : employees) System.out.println(employee);
+        for (Object employee : employees)
+            System.out.println(employee);
     }
 
     public List<String> deleteEmployee(String response, List<String> employees) {
