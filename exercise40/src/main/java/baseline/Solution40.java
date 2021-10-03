@@ -7,6 +7,10 @@ package baseline;
 
 import java.util.*;
 
+//Exercise 40 - Filtering Records
+//  Prompts the user to enter a search string and returns a table of all the employees whose names contain the
+//  search string.
+
 public class Solution40 {
 
     //Added final static variables for each map key
