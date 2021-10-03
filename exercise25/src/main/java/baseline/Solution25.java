@@ -7,6 +7,9 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 25 - Password Strength Indicator
+//  Puts the user's input against a variety of tests and responds with how strong the password is based on those tests.
+
 public class Solution25 {
 
     static final Scanner input = new Scanner(System.in);
