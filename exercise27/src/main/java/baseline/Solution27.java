@@ -7,6 +7,10 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 27 - Validating Inputs
+//  - Prompts the user for employee information and validates that input based on a number of tests.
+//  - Returns specific strings if any tests failed (or not)
+
 public class Solution27 {
 
     private static final Scanner input = new Scanner(System.in);
@@ -18,6 +22,7 @@ public class Solution27 {
     }
 
     public static void main(String[] arg) {
+        //Prompts the user for the employee's information and returns the errors (or lack of) associated with the input.
         Solution27 reader = new Solution27();
 
         //Prompts the user for the first name, last name, ZIP code, and ID.
@@ -35,7 +40,7 @@ public class Solution27 {
             //An employee ID is in the format AA-1234. So, two letters, a hyphen, and four numbers.
             //The ZIP code must be a number.
 
-                System.out.println(validator.validateInput());
+        System.out.println(validator.validateInput());
 
     }
 }
