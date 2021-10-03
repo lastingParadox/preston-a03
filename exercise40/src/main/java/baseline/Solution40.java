@@ -5,11 +5,7 @@
 
 package baseline;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Solution40 {
 
@@ -49,7 +45,7 @@ public class Solution40 {
         StringBuilder output = new StringBuilder();
 
         //Prints the header
-        output.append(String.format("Results:%n%n"));
+        output.append(String.format("%nResults:%n%n"));
         output.append(String.format("Name%17s Position%11s SeparationDate%n", "|", "|"));
         output.append(String.format("--------------------|-------------------|----------------%n"));
 
@@ -67,33 +63,38 @@ public class Solution40 {
     }
 
     public static void main(String[] arg) {
-        //Create new instance Solution39 "sorter"
-        //Create new list of maps "employeeList"
+        //Creates a list of maps and stores the employees on it, sorting them by last name.
+        //Then prompts the user to enter a search string.
+            //If the string is contained in any employee first or last name, prints that employee in the table.
+        Solution40 sorter = new Solution40();
 
-        //Map of strings with string keys "temp" is equal to createMap("John", "Johnson", "Manager", "2016-12-31")
-        //Add temp to employeeList
+        List<Map<String, String>> employeeList = new ArrayList<>();
 
-        //temp is equal to createMap("Tou", "Xiong", "Software Engineer", "2016-10-05")
-        //Add temp to employeeList
+        //List and maps initialization
+        Map<String, String> temp = sorter.createMap("John", "Johnson", "Manager", "2016-12-31");
+        employeeList.add(temp);
 
-        //temp is equal to createMap("Michaela", "Michaelson", "District Manager", "2015-12-19")
-        //Add temp to employeeList
+        temp = sorter.createMap("Tou", "Xiong", "Software Engineer", "2016-10-05");
+        employeeList.add(temp);
 
-        //temp is equal to createMap("Jake", "Jacobson", "Programmer", "")
-        //Add temp to employeeList
+        temp = sorter.createMap("Michaela", "Michaelson", "District Manager", "2015-12-19");
+        employeeList.add(temp);
 
-        //temp is equal to createMap("Jacquelyn", "Jackson", "DBA", "")
-        //Add temp to employeeList
+        temp = sorter.createMap("Jake", "Jacobson", "Programmer", "");
+        employeeList.add(temp);
 
-        //temp is equal to createMap("Sally", "Webber", "Web Developer", "2015-12-18")
-        //Add temp to employeeList
+        temp = sorter.createMap("Jacquelyn", "Jackson", "DBA", "");
+        employeeList.add(temp);
 
-        //employeeList is sorted
-        //i.e., employeeList = sortList(employeeList)
+        temp = sorter.createMap("Sally", "Webber", "Web Developer", "2015-12-18");
+        employeeList.add(temp);
 
-        //Prompt the user to enter a search string
-            //String "response" stores in the response in lowercase
+        sorter.sortList(employeeList);
 
-        //Print output via printTable(employeeList, temp)
+        //User inputs search string, gets out table.
+        System.out.print("Enter a search string: ");
+        String response = sorter.takeInput();
+
+        sorter.printTable(employeeList, response);
     }
 }
