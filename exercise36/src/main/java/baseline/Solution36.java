@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Exercise 36 - Computing Statistics
+//  Asks the user for response times. Once the user finishes, the mean, max, min, and standard deivation of the data
+//  is returned.
+
 public class Solution36 {
 
     private static final int DONE = -1;
@@ -21,14 +25,15 @@ public class Solution36 {
 
     private int validateNum(String response) {
         //Validates that the response was an integer and returns the integer.
+        //Website response times in milliseconds are not going to have decimal places.
+            //There is no need for that precision unless your website is a Star Wars Hologram
         int responseNum;
 
         while(true) {
             try {
                 //If the user inputs done within this loop, return a value to finish the list.
-                if (response.equals("done")) {
-                    return DONE;
-                }
+                if (response.equals("done")) return DONE;
+
                 responseNum = Integer.parseInt(response);
 
                 //Validation that the number was not negative.
@@ -97,7 +102,7 @@ public class Solution36 {
 
         ResponseStats calculator = new ResponseStats(responseArray);
 
-        //I wanted to use a StringBuilder but IntelliJ thinks this is better
+        //Wanted to use a StringBuilder but IntelliJ thinks this is better.
         String output = calculator.printList() +
                 String.format("%nThe average is %.2f", calculator.average()) +
                 String.format("%nThe minimum is %d", calculator.min()) +
