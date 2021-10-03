@@ -7,6 +7,10 @@ package baseline;
 
 import java.util.Scanner;
 
+//Exercise 31 - Karvonen Heart Rate
+// - Prompts the user for their age and resting heart rate and returns a table of target rates
+// - According to heart intensities from 55% to 95%
+
 public class Solution31 {
 
     private static final Scanner input = new Scanner(System.in);
@@ -26,13 +30,15 @@ public class Solution31 {
                 return intResponse;
             }
             catch (NumberFormatException e) {
-                System.out.printf("%s is not a number. Please input a number.%n", response);
+                System.out.printf("%s is not a valid response. Please input an integer.%n", response);
                 response = takeInput(prompt);
             }
         }
     }
 
     public static void main(String[] arg) {
+        //Prompts the user for their age and resting heart rate
+        //  Outputs a table of target heart rates for intensities 55% to 95% in increments of 5%
         Solution31 prompter = new Solution31();
 
         int age = prompter.validateIntInput("What is your age? ",

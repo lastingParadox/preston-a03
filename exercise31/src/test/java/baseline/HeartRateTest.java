@@ -35,7 +35,6 @@ class HeartRateTest {
 
     @Test
     void createTargetTableTest() {
-        //This was a terrible test to implement, to say the least
         String expected = (String.format("Resting Pulse: 65        Age: 22%n%n") +
                            String.format("Intensity    | Rate%n") +
                            String.format("-------------|--------%n") +

@@ -19,16 +19,19 @@ public class HeartRate {
     }
 
     public int round(double target) {
+        //Rounds the value given to the next integer.
         BigDecimal temp = BigDecimal.valueOf(target);
         temp = temp.setScale(0, RoundingMode.HALF_UP);
         return temp.intValue();
     }
 
     public double calcTargetHR(double intensity) {
+        //Returns the target heart rate for the intensity.
         return (((220 - age) - restingHR) * intensity) + restingHR;
     }
 
     private StringBuilder createTargetTableHeader() {
+        //Creates the table header to be displayed in the output.
         StringBuilder temp = new StringBuilder();
 
         temp.append(String.format("Resting Pulse: %d", restingHR));
@@ -39,6 +42,8 @@ public class HeartRate {
     }
 
     public String createTargetTable() {
+        //After the header, creates the rest of the table.
+        //  Includes intensities from 55% to 95%
         double intensity;
         int target;
 
