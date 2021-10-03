@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Exercise 38 - Filtering Values
+//  Takes in the user's list of integers and returns only the even values from that list.
+
 public class Solution38 {
 
     private static final Scanner input = new Scanner(System.in);
@@ -79,7 +82,7 @@ public class Solution38 {
         //Prompts the user to input a list of numbers and outputs the even numbers from their input.
         Solution38 filterer = new Solution38();
 
-        System.out.print("Enter a list of numbers, separated by spaces: ");
+        System.out.print("Enter a list of numbers, separated by a single space each: ");
 
         String response = input.nextLine();
 
